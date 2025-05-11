@@ -110,6 +110,9 @@ resource "kubectl_manifest" "apply_cilium" {
   yaml_body  = each.value
   apply_only = true
   depends_on = [data.http.talos_health]
+
+  apply_retry_count    = 10
+  apply_retry_interval = "30s"
 }
 
 
