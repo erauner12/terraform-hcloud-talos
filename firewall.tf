@@ -65,7 +65,7 @@ locals {
 }
 
 resource "hcloud_firewall" "this" {
-  name = var.cluster_name
+  name = "${local.cluster_prefix}main"
   dynamic "rule" {
     for_each = local.firewall_rules_list
     //noinspection HILUnresolvedReference

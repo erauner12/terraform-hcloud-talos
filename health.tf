@@ -9,7 +9,8 @@
 #}
 
 data "http" "talos_health" {
-  count    = var.control_plane_count > 0 ? 1 : 0
+  # Disable by default – can be re-enabled with TF_VAR_enable_early_talos_healthcheck=true
+  count    = var.enable_early_talos_healthcheck && var.control_plane_count > 0 ? 1 : 0
   url      = "https://${local.control_plane_public_ipv4_list[0]}:${local.api_port_k8s}/version"
   insecure = true
   retry {

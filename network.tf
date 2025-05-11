@@ -5,10 +5,12 @@ locals {
   node_ipv4_cidr_mask_size = split("/", local.node_ipv4_cidr)[1] # 24
   pod_ipv4_cidr            = var.pod_ipv4_cidr
   service_ipv4_cidr        = var.service_ipv4_cidr
+
+  cluster_prefix = var.cluster_prefix ? "${var.cluster_name}-" : ""
 }
 
 resource "hcloud_network" "this" {
-  name     = var.cluster_name
+  name     = "${local.cluster_prefix}main"
   ip_range = local.network_ipv4_cidr
   labels = {
     "cluster" = var.cluster_name

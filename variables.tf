@@ -402,3 +402,9 @@ variable "extraManifests" {
   default     = null
   description = "Additional manifests URL applied during Talos bootstrap."
 }
+
+variable "enable_early_talos_healthcheck" {
+  type        = bool
+  default     = false
+  description = "Enable the pre-Kubernetes Talos health probe."
+}
